@@ -3,19 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Swipe App</title>
+  <title>Paw & Preferences</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- Cards are injected here by TypeScript -->
-  <div class="card-stack" id="card-stack"></div>
+<img src="Paws_Preferences_Logo.png" alt="Paws & Preferences" class="logo" />
 
-  <!-- Shown when all cards are swiped -->
+<!-- TypeScript will inject stacked cards here-->
+<div class="card-stack" id="card-stack">
   <div class="empty" id="empty">
     <h2>All caught up!</h2>
+    <p>Here are the cats you liked 💚</p>
+    <div class="liked-summary" id="liked-summary"></div>
     <button id="btn-reset">Restart</button>
   </div>
+</div>
 
   <!-- Action buttons -->
   <div class="actions">

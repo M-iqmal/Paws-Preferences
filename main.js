@@ -49,19 +49,38 @@ function buildCard(p) {
   `;
     return card;
 }
+function showSummary() {
+    const summaryEl = document.getElementById("liked-summary");
+    const liked = swipeHistory.filter(s => s.decision === "like");
+    if (liked.length === 0) {
+        summaryEl.innerHTML = `<p>You didn't like anyone this round 😿</p>`;
+        return;
+    }
+    summaryEl.innerHTML = liked.map(s => `
+    <div class="summary-card">
+      <img src="https://cataas.com/cat/${s.profile.tag}?type=square&width=80" alt="${s.profile.name}"/>
+      <div>
+        <strong>${s.profile.name}, ${s.profile.age}</strong>
+        <p>${s.profile.bio}</p>
+      </div>
+    </div>
+  `).join("");
+}
 // --- Render the top 3 cards into the stack ---
 function renderStack() {
-    stackEl.innerHTML = "";
     if (deck.length === 0) {
+        stackEl.innerHTML = ""; // clear any remaining cards
+        stackEl.appendChild(emptyEl); // put empty div back in
+        showSummary();
         emptyEl.classList.add("visible");
         return;
     }
     emptyEl.classList.remove("visible");
-    // Reverse so the first card ends up on top (appended last = highest z-index)
+    stackEl.innerHTML = "";
     const slice = deck.slice(0, 3).reverse();
     slice.forEach((profile, i) => {
         const card = buildCard(profile);
-        const frontIndex = slice.length - 1 - i; // 0 = top card
+        const frontIndex = slice.length - 1 - i;
         if (frontIndex === 0) {
             card.classList.add("active");
             attachDrag(card);
