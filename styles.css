@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap");
 :root {
-  --bg: #0e0d12;
-  --like: #22c55e;
-  --nope: #ef4444;
-  --text: #f5f0ff;
+  --bg: #f1e2f5;
+  --like: #c52245;
+  --nope: #505353;
+  --text: #eeba59;
   --muted: #6b6580;
   --accent: #c084fc;
   --card-r: 18px;
@@ -171,8 +171,9 @@ button:active {
 }
 
 #btn-reset {
-  width: 60px;
-  height: 60px;
+  border-radius: 35%;
+  width: 90px;
+  height: 50px;
   background: rgba(192, 132, 252, 0.12);
   border: 1.5px solid rgba(192, 132, 252, 0.25);
   font-size: 1.1rem;

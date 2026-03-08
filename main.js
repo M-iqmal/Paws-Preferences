@@ -1,13 +1,28 @@
 // --- Data ---
 const profiles = [
-    { name: "Aurora", age: 26, bio: "Painter of dreams ✨", img: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=700&q=80" },
-    { name: "Kai", age: 28, bio: "Surfer by day 🌊", img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=700&q=80" },
-    { name: "Selene", age: 24, bio: "Coffee & chemistry ☕", img: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=700&q=80" },
-    { name: "Remi", age: 30, bio: "Chef-in-training 🍝", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=80" },
-    { name: "Indigo", age: 22, bio: "Poet & traveller 🗺️", img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=700&q=80" },
+    { name: "Oyen", age: 3, bio: "Sunbathing expert & biscuit maker 🧡", tag: "orange" },
+    { name: "Tam", age: 5, bio: "Master of hiding in dark places 🖤", tag: "black" },
+    { name: "Snow", age: 2, bio: "Fluffy cloud who judges everyone ☁️", tag: "white" },
+    { name: "Whiskers", age: 4, bio: "Professional zoomies at 3am 💨", tag: "cute" },
+    { name: "Atan", age: 6, bio: "Too elegant for you, but swipe anyway 👑", tag: "funny" },
+    { name: "Comel", age: 1, bio: "Youngest troublemaker in the house 😈", tag: "kitten" },
+    { name: "Husky", age: 3, bio: "Boo 👻", tag: "Halloween" },
+    { name: "Smoky", age: 5, bio: "Choclate Flavor 🍫", tag: "Chocolate" },
+    { name: "Iris", age: 4, bio: "Everyday is a festive 🎉", tag: "Christmas " },
+    { name: "Sire", age: 2, bio: "Well, G'day we're having today 🧐", tag: "Collar" },
+    { name: "Eepy", age: 1, bio: "Don't wake me up 💤", tag: "sleepy" },
+    { name: "Mario & Luigi", age: 4, bio: "Brothers in arms🫂", tag: "TwoCats" },
+    { name: "Abu", age: 5, bio: "Too long in the Oven ♨", tag: "grey" },
+    { name: "Oyu", age: 3, bio: "Hey, What'chu doing? 😉", tag: "blink" },
+    { name: "Atai", age: 3, bio: "Sniff, Sniff", tag: "blackandwhite" },
+    { name: "Grumps", age: 3, bio: "Always with an attitude (¬⤙¬ )", tag: "grumpy" },
+    { name: "Nene", age: 3, bio: "Whatsapp Status: Busy 🟢", tag: "telephony" },
+    { name: "Ciku", age: 1, bio: "At your Service", tag: "housemaid" },
+    { name: "Mina", age: 3, bio: "You can's resist 🥹", tag: "soft" },
+    { name: "Ninja", age: 3, bio: "Hiding in the shadow 🥷🏻", tag: "ninja" },
 ];
 // --- State ---
-let deck = [...profiles]; // copy so reset works
+let deck = shuffle(profiles).slice(0, 10);
 let swipeHistory = [];
 let likedCount = 0;
 let nopedCount = 0;
@@ -20,8 +35,10 @@ const nopedEl = document.getElementById("noped-count");
 function buildCard(p) {
     const card = document.createElement("div");
     card.className = "card";
+    // Each call generates a fresh random cat image from cataas.com based on the profile's tag
+    const imgUrl = `https://cataas.com/cat/${p.tag}?type=square&width=400`;
     card.innerHTML = `
-    <img class="card-img" src="${p.img}" alt="${p.name}" draggable="false"/>
+    <img class="card-img" src="${imgUrl}" alt="${p.name}" draggable="false"/>
     <div class="card-overlay"></div>
     <div class="card-info">
       <h2>${p.name}, ${p.age}</h2>
@@ -57,6 +74,9 @@ function renderStack() {
         }
         stackEl.appendChild(card);
     });
+}
+function shuffle(arr) {
+    return [...arr].sort(() => Math.random() - 0.5);
 }
 function attachDrag(card) {
     let startX = 0, startY = 0;
@@ -147,7 +167,7 @@ function dismiss(card, decision) {
     if (decision === "like") {
         likedCount++;
         likedEl.textContent = String(likedCount);
-        spawnFlyout("💚");
+        spawnFlyout("💕");
     }
     else {
         nopedCount++;
@@ -185,7 +205,7 @@ document.getElementById("btn-rewind").addEventListener("click", () => {
 });
 // Reset everything
 document.getElementById("btn-reset").addEventListener("click", () => {
-    deck = [...profiles];
+    deck = shuffle(profiles).slice(0, 10); // fresh random 10 each time
     swipeHistory = [];
     likedCount = 0;
     nopedCount = 0;
