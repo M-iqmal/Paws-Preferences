@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swipe App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Cards are injected here by TypeScript -->
+  <div class="card-stack" id="card-stack"></div>
+
+  <!-- Shown when all cards are swiped -->
+  <div class="empty" id="empty">
+    <h2>All caught up!</h2>
+    <button id="btn-reset">Restart</button>
+  </div>
+
+  <!-- Action buttons -->
+  <div class="actions">
+    <button id="btn-nope">✕</button>
+    <button id="btn-rewind">↩</button>
+    <button id="btn-like">♥</button>
+  </div>
+
+  <!-- Live counters -->
+  <div class="counter">
+    <span>Nope: <em id="noped-count">0</em></span>
+    <span>Like: <em id="liked-count">0</em></span>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
