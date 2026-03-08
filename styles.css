@@ -170,6 +170,15 @@ button:active {
   color: var(--accent);
 }
 
+#btn-reset {
+  width: 60px;
+  height: 60px;
+  background: rgba(192, 132, 252, 0.12);
+  border: 1.5px solid rgba(192, 132, 252, 0.25);
+  font-size: 1.1rem;
+  color: var(--accent);
+}
+
 .counter {
   margin-top: 16px;
   display: flex;
